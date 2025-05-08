@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% if lang == 0 %}
+<html lang="en">
+{% elif lang == 1 %}
+<html lang="fr">
+{% elif lang == 2 %}
+<html lang="ar">
+{% endif %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ "Homepage - PlotTwist" if lang == 0 else "Page d'acceuil - PlotTwist" if lang == 1 else "الرئيسية - PlotTwist"}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='assets/favicon.ico')}}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% if lang == 0 %}
+    {% include 'navbar.html' %}
+    <div class="container">
+        <div class="content">
+            <h1>{{ "Welcome to PlotTwist" if lang == 0 else "Bienvenue sur PlotTwist" if lang == 1 else "مرحبا بكم في بلوتويست"}}</h1>
+            <p>{{ "This is the homepage of PlotTwist." if lang == 0 else "Ceci est la page d'accueil de PlotTwist." if lang == 1 else "هذه صفحة الرئيسية لبلوتويست."}}</p>
+        </div>
+</body>
+</html>

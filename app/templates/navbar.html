@@ -1,0 +1,48 @@
+<header {% if lang == 1 %}dir="rtl"{% endif %}>
+    <div class="header-wrapper">
+      <!-- Language selector (mobile only) -->
+      <div class="lang-container mobile-only">
+        <select class="language-selector" onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" aria-label="Changer la langue">
+          <option value="0" {% if lang == 0 %}selected{% endif %}>🇫🇷</option>
+          <option value="1" {% if lang == 1 %}selected{% endif %}>🇲🇦</option>
+          <option value="2" {% if lang == 2 %}selected{% endif %}>🇬🇧</option>
+          <option value="3" {% if lang == 3 %}selected{% endif %}>ⵣ</option>
+        </select>
+    </div>
+
+    <div class="logo">
+        <a href="/?lang={{ lang }}">
+            {% if lang == 0 %}
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="PlotTwist Logo" class="logo-img">
+            {% elif lang == 1 %}
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo de PlotTwist" class="logo-img">
+            {% elif lang == 2 %}
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="شعار بلوتويست" class="logo-img">
+            {% endif %}
+        </a>
+    </div>
+
+    <div class="burger menu">
+        <div class="burger-icon" onclick="document.querySelector('nav').classList.toggle('show')">☰</div>
+    </div>
+
+    <nav>
+        {% if lang == 0 %}
+            <a href="{{url_for('about', lang=lang)}}">About</a>
+            <a href="{{url_for('contact', lang=lang)}}">Contact us</a>
+        {% elif lang == 1 %}
+            <a href="{{url_for('about', lang=lang)}}">À propos</a>
+            <a href="{{url_for('contact', lang=lang)}}">Contactez-nous</a>
+        {% elif lang == 2 %}
+            <a href="{{url_for('about', lang=lang)}}">حول</a>
+            <a href="{{url_for('contact', lang=lang)}}">اتصل بنا</a>
+    </nav>
+
+    <div class="lang-container desktop-only">
+        <select class="language-selector" onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" aria-label="Change language">
+          <option value="0" {% if lang == 0 %}selected{% endif %}>🇬🇧</option>
+          <option value="1" {% if lang == 1 %}selected{% endif %}>🇲🇫🇷</option>
+          <option value="2" {% if lang == 2 %}selected{% endif %}>🇲🇦</option>
+        </select>
+    </div>
+</header>
