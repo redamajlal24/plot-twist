@@ -1,0 +1,62 @@
+
+.dynapuff-font {
+  font-family: "DynaPuff", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: "DynaPuff", system-ui;
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.action-button {
+  font-family: "DynaPuff", system-ui;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.primary {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.secondary {
+  background-color: #2196F3;
+  color: white;
+}
+
+.tertiary {
+  background-color: #9C27B0;
+  color: white;
+}

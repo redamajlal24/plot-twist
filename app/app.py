@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from dotenv import load_dotenv
 import os
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config import config
 
 load_dotenv()
 
@@ -10,9 +14,8 @@ app = Flask(__name__,
             static_folder='../static',
             template_folder='templates')
 
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-key-123')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///plottwist.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+env = os.getenv('FLASK_ENV', 'development')
+app.config.from_object(config[env])
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -21,8 +24,8 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    from .databse import User
-    return User.query,get(int(user_id))
+    from .database import User
+    return User.query.get(int(user_id))
 
 @app.route('/')
 def home():

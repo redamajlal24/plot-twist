@@ -1,13 +1,12 @@
 <header {% if lang == 1 %}dir="rtl"{% endif %}>
     <div class="header-wrapper">
-      <!-- Language selector (mobile only) -->
-      <div class="lang-container mobile-only">
-        <select class="language-selector" onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" aria-label="Changer la langue">
-          <option value="0" {% if lang == 0 %}selected{% endif %}>🇫🇷</option>
-          <option value="1" {% if lang == 1 %}selected{% endif %}>🇲🇦</option>
-          <option value="2" {% if lang == 2 %}selected{% endif %}>🇬🇧</option>
-          <option value="3" {% if lang == 3 %}selected{% endif %}>ⵣ</option>
-        </select>
+        <div class="lang-container desktop-only">
+            <select class="language-selector" onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" aria-label="Change language">
+              <option value="0" {% if lang == 0 %}selected{% endif %}>🇬🇧</option>
+              <option value="1" {% if lang == 1 %}selected{% endif %}>🇲🇫</option>
+              <option value="2" {% if lang == 2 %}selected{% endif %}>🇲🇦</option>
+            </select>
+        </div>
     </div>
 
     <div class="logo">
@@ -36,13 +35,6 @@
         {% elif lang == 2 %}
             <a href="{{url_for('about', lang=lang)}}">حول</a>
             <a href="{{url_for('contact', lang=lang)}}">اتصل بنا</a>
+        {% endif %}
     </nav>
-
-    <div class="lang-container desktop-only">
-        <select class="language-selector" onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" aria-label="Change language">
-          <option value="0" {% if lang == 0 %}selected{% endif %}>🇬🇧</option>
-          <option value="1" {% if lang == 1 %}selected{% endif %}>🇲🇫🇷</option>
-          <option value="2" {% if lang == 2 %}selected{% endif %}>🇲🇦</option>
-        </select>
-    </div>
 </header>

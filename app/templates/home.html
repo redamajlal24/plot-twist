@@ -11,17 +11,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ "Homepage - PlotTwist" if lang == 0 else "Page d'acceuil - PlotTwist" if lang == 1 else "الرئيسية - PlotTwist"}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="shortcut icon" href="{{url_for('static', filename='assets/favicon.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include 'navbar.html' %}
     <div class="container">
-        <div class="content">
-            <h1>{{ "Welcome to PlotTwist" if lang == 0 else "Bienvenue sur PlotTwist" if lang == 1 else "مرحبا بكم في بلوتويست"}}</h1>
-            <p>{{ "This is the homepage of PlotTwist." if lang == 0 else "Ceci est la page d'accueil de PlotTwist." if lang == 1 else "هذه صفحة الرئيسية لبلوتويست."}}</p>
+        <h1 class="title">Plot Twist</h1>
+        <div class="button">  <!-- Changed from button-container to button to match CSS -->
+            {% if lang == 0 %}
+                <button class="action-button primary">Maths</button>
+                <button class="action-button secondary">Physics</button>
+                <button class="action-button tertiary">Chemistry</button>
+            {% elif lang == 1 %}
+                <button class="action-button primary">Maths</button>
+                <button class="action-button secondary">Physique</button>
+                <button class="action-button tertiary">Chimie</button>
+            {% elif lang == 2 %}
+                <button class="action-button primary">الرياضيات</button>
+                <button class="action-button secondary">الفيزياء</button>
+                <button class="action-button tertiary">الكيمياء</button>
+            {% endif %}
         </div>
     </div>
 </body>
