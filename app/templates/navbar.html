@@ -9,15 +9,12 @@
             </select>
         </div>
         
-        <div style="display: flex; gap: 1rem; align-items: center;">
+        <div style="display: flex; gap: 1.5rem; align-items: center;">
             <button class="login-btn">
+                <img src="{{ url_for('static', filename='assets/user.svg') }}" alt="user icon">
                 {% if lang == 0 %}Login{% elif lang == 1 %}Connexion{% else %}تسجيل الدخول{% endif %}
             </button>
-            <div class="burger-menu" onclick="toggleSidebar()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="burger-menu" onclick="toggleSidebar()"></div>
         </div>
     </nav>
 
@@ -37,10 +34,8 @@
     <script>
         function toggleSidebar() {
             document.querySelector('.sidebar').classList.toggle('active');
-            const spans = document.querySelectorAll('.burger-menu span');
-            spans[0].style.transform = spans[0].style.transform ? '' : 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = spans[1].style.opacity ? '' : '0';
-            spans[2].style.transform = spans[2].style.transform ? '' : 'rotate(-45deg) translate(7px, -7px)';
+            document.querySelector('.burger-menu').style.transform = 
+                document.querySelector('.burger-menu').style.transform ? '' : 'rotate(90deg)';
         }
     </script>
 </header>
