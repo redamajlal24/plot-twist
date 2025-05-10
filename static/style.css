@@ -1,49 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.dynapuff-font {
+body {
+  background-image: url('../static/assets/osHzqP-2309238264.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
   font-family: "DynaPuff", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+}
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+}
+
+.login-btn {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid white;
+  border-radius: 25px;
+  background: transparent;
+  color: white;
+  font-family: "DynaPuff", system-ui;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: white;
+  color: #333;
+}
+
+.burger-menu {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.burger-menu span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+.sidebar a {
+  display: block;
+  padding: 1rem 0;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar a:hover {
+  color: #2196F3;
 }
 
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 2rem;
 }
 
 .title {
-  font-family: "DynaPuff", system-ui;
   font-size: 5rem;
   margin-bottom: 2rem;
-  color: #333;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/*
 .button {
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
 }
+*/
+
+.button-container {
+  display: flex;
+  gap: 1.5rem;
+}
 
 .action-button {
-  font-family: "DynaPuff", system-ui;
-  padding: 0.8rem 1.5rem;
+  padding: 1rem 2rem;
   border: none;
   border-radius: 25px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
+  font-family: "DynaPuff", system-ui;
 }
 
 .action-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .primary {

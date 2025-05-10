@@ -1,26 +1,18 @@
 <!DOCTYPE html>
-{% if lang == 0 %}
-<html lang="en">
-{% elif lang == 1 %}
-<html lang="fr">
-{% elif lang == 2 %}
-<html lang="ar">
-{% endif %}
+<html lang="{{ 'en' if lang == 0 else 'fr' if lang == 1 else 'ar' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ "Homepage - PlotTwist" if lang == 0 else "Page d'acceuil - PlotTwist" if lang == 1 else "الرئيسية - PlotTwist"}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
     {% include 'navbar.html' %}
     <div class="container">
         <h1 class="title">Plot Twist</h1>
-        <div class="button">  <!-- Changed from button-container to button to match CSS -->
+        <div class="button-container">
             {% if lang == 0 %}
                 <button class="action-button primary">Maths</button>
                 <button class="action-button secondary">Physics</button>

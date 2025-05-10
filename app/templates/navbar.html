@@ -1,31 +1,27 @@
 <header {% if lang == 1 %}dir="rtl"{% endif %}>
-    <div class="header-wrapper">
-        <div class="lang-container desktop-only">
-            <select class="language-selector" onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" aria-label="Change language">
-              <option value="0" {% if lang == 0 %}selected{% endif %}>🇬🇧</option>
-              <option value="1" {% if lang == 1 %}selected{% endif %}>🇲🇫</option>
-              <option value="2" {% if lang == 2 %}selected{% endif %}>🇲🇦</option>
+    <nav class="navbar">
+        <div class="lang-selector">
+            <select onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" 
+                    style="background: transparent; color: white; border: 1px solid white; padding: 0.3rem;">
+                <option value="0" {% if lang == 0 %}selected{% endif %}>🇬🇧</option>
+                <option value="1" {% if lang == 1 %}selected{% endif %}>🇫🇷</option>
+                <option value="2" {% if lang == 2 %}selected{% endif %}>🇲🇦</option>
             </select>
         </div>
-    </div>
+        
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <button class="login-btn">
+                {% if lang == 0 %}Login{% elif lang == 1 %}Connexion{% else %}تسجيل الدخول{% endif %}
+            </button>
+            <div class="burger-menu" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-    <div class="logo">
-        <a href="/?lang={{ lang }}">
-            {% if lang == 0 %}
-                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="PlotTwist Logo" class="logo-img">
-            {% elif lang == 1 %}
-                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo de PlotTwist" class="logo-img">
-            {% elif lang == 2 %}
-                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="شعار بلوتويست" class="logo-img">
-            {% endif %}
-        </a>
-    </div>
-
-    <div class="burger menu">
-        <div class="burger-icon" onclick="document.querySelector('nav').classList.toggle('show')">☰</div>
-    </div>
-
-    <nav>
+    <div class="sidebar">
         {% if lang == 0 %}
             <a href="{{url_for('about', lang=lang)}}">About</a>
             <a href="{{url_for('contact', lang=lang)}}">Contact us</a>
@@ -36,5 +32,15 @@
             <a href="{{url_for('about', lang=lang)}}">حول</a>
             <a href="{{url_for('contact', lang=lang)}}">اتصل بنا</a>
         {% endif %}
-    </nav>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('active');
+            const spans = document.querySelectorAll('.burger-menu span');
+            spans[0].style.transform = spans[0].style.transform ? '' : 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = spans[1].style.opacity ? '' : '0';
+            spans[2].style.transform = spans[2].style.transform ? '' : 'rotate(-45deg) translate(7px, -7px)';
+        }
+    </script>
 </header>
