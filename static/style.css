@@ -28,10 +28,42 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(164, 180, 101, 0.1);
-  backdrop-filter: blur(8px);
+  background: rgba(98, 111, 71, 0.5);
   border-bottom: 2px solid var(--color-olive);
   z-index: 1000;
+}
+
+.center-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo-link {
+  text-decoration: none;
+  color: var(--color-cream);
+}
+
+.nav-title {
+  font-size: 2rem;
+  font-family: "DynaPuff", system-ui;
+  color: var(--color-cream);
+  text-shadow: 2px 2px 0px var(--color-peach);
+  transform: rotate(-2deg);
+  transition: all 0.3s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-title:hover {
+  transform: rotate(2deg) scale(1.05);
+  text-shadow: 3px 3px 0px var(--color-peach);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .login-btn {
@@ -46,11 +78,13 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   transform: rotate(-2deg);
+  text-decoration: none;
 }
 
 .login-btn:hover {
   background: var(--color-cream);
   color: var(--color-sage);
+  text-decoration: none;
 }
 
 .login-btn img {
@@ -166,6 +200,56 @@ body {
   color: var(--color-cream);
 }
 
+.left-side {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;  /* Don't allow flex growing/shrinking */
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 0 0 auto;  /* Don't allow flex growing/shrinking */
+}
+
+.flying-text-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.flying-text {
+  position: absolute;
+  font-family: "DynaPuff", system-ui;
+  color: var(--color-cream);
+  opacity: 0;
+  white-space: nowrap;
+  width: max-content;
+}
+
+@keyframes flyInText {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  5% {
+    opacity: var(--text-opacity);
+  }
+  95% {
+    opacity: var(--text-opacity);
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
 @media (max-width: 768px) {
   .button-container {
     flex-direction: column;
@@ -174,4 +258,97 @@ body {
   .title {
     font-size: 4rem;
   }
+
+  .nav-title {
+    font-size: 1.5rem;
+  }
+}
+
+.login-form {
+  background: var(--color-cream);
+  padding: 2.5rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  transform: rotate(-1deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--color-peach);
+}
+
+.form-title {
+  color: var(--color-sage);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  transform: rotate(-2deg);
+  text-shadow: 2px 2px 0px var(--color-peach);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  transform: rotate(1deg);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid var(--color-olive);
+  background: transparent;
+  font-family: "DynaPuff", system-ui;
+  font-size: 1rem;
+  color: var(--color-sage);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--color-peach);
+  transform: rotate(-1deg);
+}
+
+.form-group input::placeholder {
+  color: var(--color-sage);
+  opacity: 0.7;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-olive);
+  border: none;
+  color: var(--color-cream);
+  font-family: "DynaPuff", system-ui;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transform: rotate(-1deg);
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.submit-btn:hover {
+  background: var(--color-sage);
+  transform: rotate(1deg) translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-link {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--color-sage);
+  font-size: 0.9rem;
+  transform: rotate(-1deg);
+}
+
+.signup-link a {
+  color: var(--color-peach);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.signup-link a:hover {
+  color: var(--color-sage);
+  text-decoration: underline;
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ 'en' if lang == 0 else 'fr' if lang == 1 else 'ar' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ "Login - PlotTwist" if lang == 0 else "Connexion - PlotTwist" if lang == 1 else "تسجيل الدخول - PlotTwist"}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <form class="login-form" method="POST" action="{{ url_for('login') }}">
+            <h2 class="form-title">
+                {% if lang == 0 %}Welcome Back!
+                {% elif lang == 1 %}Bon Retour!
+                {% else %}مرحباً بعودتك!{% endif %}
+            </h2>
+            
+            <div class="form-group">
+                <input type="text" name="username" required 
+                    placeholder="{{ 'Username or Email' if lang == 0 else 'Nom d\'utilisateur ou E-mail' if lang == 1 else 'اسم المستخدم أو البريد الإلكتروني' }}">
+            </div>
+            
+            <div class="form-group">
+                <input type="password" name="password" required 
+                    placeholder="{{ 'Password' if lang == 0 else 'Mot de passe' if lang == 1 else 'كلمة السر' }}">
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                {% if lang == 0 %}Login
+                {% elif lang == 1 %}Connexion
+                {% else %}تسجيل الدخول{% endif %}
+            </button>
+            
+            <p class="signup-link">
+                {% if lang == 0 %}
+                    New here? <a href="{{ url_for('signup', lang=lang) }}">Create an account</a>
+                {% elif lang == 1 %}
+                    Nouveau ici? <a href="{{ url_for('signup', lang=lang) }}">Créer un compte</a>
+                {% else %}
+                    جديد هنا؟ <a href="{{ url_for('signup', lang=lang) }}">إنشاء حساب</a>
+                {% endif %}
+            </p>
+        </form>
+    </div>
+</body>
+</html>

@@ -10,6 +10,7 @@
 </head>
 <body>
     {% include 'navbar.html' %}
+    <div class="flying-text-container"></div>
     <div class="container">
         <h1 class="title">Plot Twist</h1>
         <div class="button-container">
@@ -28,5 +29,53 @@
             {% endif %}
         </div>
     </div>
+
+    <!--FLYING TEXT-->
+    <script>
+        const texts = [
+            { en: 'THE WORLDS NUMBER 1 EDUCATIONAL PLATFORM', fr: 'LA PLATEFORME ÉDUCATIVE NUMÉRO 1 AU MONDE', ar: 'أفضل منصة تعليمية في العالم' },
+            { en: 'GENIUS', fr: 'GÉNIE', ar: 'عبقري' },
+            { en: 'EXCELLENCE', fr: 'EXCELLENCE', ar: 'تفوق' },
+            { en: 'WOW' , fr: 'WAOUH', ar: 'رائع' },
+            { en: 'YOU WILL BE SMART', fr: 'VOUS SEREZ INTELLIGENT', ar: 'ستكون ذكيًا' },
+            { en: 'hype moments and aura' , fr: 'moments d\'hype et aura', ar: 'لحظات حماسية وهالة' },
+            { en: 'gurt: yo', fr: 'gurt: yo', ar: 'gurt: yo' }
+        ];
+
+        const container = document.querySelector('.flying-text-container');
+        const currentLang = {{ lang }};  // Remove quotes to make it a number
+        const langKey = currentLang === 0 ? 'en' : currentLang === 1 ? 'fr' : 'ar';
+
+        function createFlyingText() {
+            const text = texts[Math.floor(Math.random() * texts.length)][langKey];
+            const element = document.createElement('div');
+            element.className = 'flying-text';
+            element.textContent = text;
+            
+            const size = Math.random() * (4 - 1) + 1;
+            const opacity = Math.random() * (0.8 - 0.2) + 0.2;
+            const duration = Math.random() * (10 - 3) + 3; // Faster animation: 3-10s instead of 5-15s
+            const verticalPos = Math.random() * 100;
+            
+            element.style.cssText = `
+                font-size: ${size}rem;
+                top: ${verticalPos}%;
+                --text-opacity: ${opacity};
+                animation: flyInText ${duration}s linear;
+                direction: ${currentLang >= 1 ? 'rtl' : 'ltr'};  // RTL for both French and Arabic
+            `;
+            
+            container.appendChild(element);
+            element.addEventListener('animationend', () => element.remove());
+            
+            // More frequent text generation: 500-1500ms instead of 1000-3000ms
+            setTimeout(createFlyingText, Math.random() * 1000 + 500);
+        }
+
+        // Start multiple flying texts initially
+        for(let i = 0; i < 5; i++) {
+            createFlyingText();
+        }
+    </script>
 </body>
 </html>

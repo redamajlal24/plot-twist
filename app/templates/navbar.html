@@ -1,40 +1,53 @@
-<header {% if lang == 1 %}dir="rtl"{% endif %}>
+<header {% if lang==1 %}dir="rtl" {% endif %}>
     <nav class="navbar">
-        <div class="lang-selector">
-            <select onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;" 
+        <div class="left-side">
+            <div class="lang-selector">
+                <select
+                    onchange="var s=location.search.replace(/([?&]lang=)[^&]*/,'').replace(/^&/,'?');location.href=location.pathname+(s?s+'&':'?')+'lang='+this.value;"
                     style="background: transparent; color: white; border: 1px solid white; padding: 0.3rem;">
-                <option value="0" {% if lang == 0 %}selected{% endif %}>🇬🇧</option>
-                <option value="1" {% if lang == 1 %}selected{% endif %}>🇫🇷</option>
-                <option value="2" {% if lang == 2 %}selected{% endif %}>🇲🇦</option>
-            </select>
+                    <option value="0" {% if lang==0 %}selected{% endif %}>🇬🇧</option>
+                    <option value="1" {% if lang==1 %}selected{% endif %}>🇫🇷</option>
+                    <option value="2" {% if lang==2 %}selected{% endif %}>🇲🇦</option>
+                </select>
+            </div>
         </div>
-        
-        <div style="display: flex; gap: 1.5rem; align-items: center;">
-            <button class="login-btn">
+
+        {% if request.endpoint != 'home' %}
+        <div class="center-logo">
+            <a href="{{ url_for('home', lang=lang) }}" class="logo-link">
+                <h1 class="nav-title">Plot Twist</h1>
+            </a>
+        </div>
+        {% endif %}
+
+        <div class="right-side">
+            <a href="{{ url_for('login', lang=lang) }}" class="login-btn">
                 <img src="{{ url_for('static', filename='assets/user.svg') }}" alt="user icon">
-                {% if lang == 0 %}Login{% elif lang == 1 %}Connexion{% else %}تسجيل الدخول{% endif %}
-            </button>
+                <span {% if lang==2 %}style="margin-right: 0.5rem"{% endif %}>
+                    {% if lang == 0 %}Login{% elif lang == 1 %}Connexion{% else %}تسجيل الدخول{% endif %}
+                </span>
+            </a>
             <div class="burger-menu" onclick="toggleSidebar()"></div>
         </div>
     </nav>
 
     <div class="sidebar">
         {% if lang == 0 %}
-            <a href="{{url_for('about', lang=lang)}}">About</a>
-            <a href="{{url_for('contact', lang=lang)}}">Contact us</a>
+        <a href="{{url_for('about', lang=lang)}}">About</a>
+        <a href="{{url_for('contact', lang=lang)}}">Contact us</a>
         {% elif lang == 1 %}
-            <a href="{{url_for('about', lang=lang)}}">À propos</a>
-            <a href="{{url_for('contact', lang=lang)}}">Contactez-nous</a>
+        <a href="{{url_for('about', lang=lang)}}">À propos</a>
+        <a href="{{url_for('contact', lang=lang)}}">Contactez-nous</a>
         {% elif lang == 2 %}
-            <a href="{{url_for('about', lang=lang)}}">حول</a>
-            <a href="{{url_for('contact', lang=lang)}}">اتصل بنا</a>
+        <a href="{{url_for('about', lang=lang)}}">حول</a>
+        <a href="{{url_for('contact', lang=lang)}}">اتصل بنا</a>
         {% endif %}
     </div>
 
     <script>
         function toggleSidebar() {
             document.querySelector('.sidebar').classList.toggle('active');
-            document.querySelector('.burger-menu').style.transform = 
+            document.querySelector('.burger-menu').style.transform =
                 document.querySelector('.burger-menu').style.transform ? '' : 'rotate(90deg)';
         }
     </script>

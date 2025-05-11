@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ 'en' if lang == 0 else 'fr' if lang == 1 else 'ar' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ "Sign Up - PlotTwist" if lang == 0 else "S'inscrire - PlotTwist" if lang == 1 else "التسجيل - PlotTwist"}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <form class="signup-form" method="POST" action="{{ url_for('signup') }}">
+            <h2 class="form-title">
+                {% if lang == 0 %}Sign Up
+                {% elif lang == 1 %}S'inscrire
+                {% else %}التسجيل{% endif %}
+            </h2>
+            
+            <div class="form-group">
+                <input type="text" name="username" required 
+                    placeholder="{{ 'Username' if lang == 0 else 'Nom d\'utilisateur' if lang == 1 else 'اسم المستخدم' }}">
+            </div>
+            
+            <div class="form-group">
+                <input type="email" name="email" required 
+                    placeholder="{{ 'Email' if lang == 0 else 'E-mail' if lang == 1 else 'البريد الإلكتروني' }}">
+            </div>
+            
+            <div class="form-group">
+                <input type="password" name="password" required 
+                    placeholder="{{ 'Password' if lang == 0 else 'Mot de passe' if lang == 1 else 'كلمة السر' }}">
+            </div>
+            
+            <div class="form-group">
+                <input type="password" name="confirm_password" required 
+                    placeholder="{{ 'Confirm Password' if lang == 0 else 'Confirmer le mot de passe' if lang == 1 else 'تأكيد كلمة السر' }}">
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                {% if lang == 0 %}Create Account
+                {% elif lang == 1 %}Créer un compte
+                {% else %}إنشاء حساب{% endif %}
+            </button>
+            
+            <p class="login-link">
+                {% if lang == 0 %}
+                    Already have an account? <a href="{{ url_for('login', lang=lang) }}">Login</a>
+                {% elif lang == 1 %}
+                    Vous avez déjà un compte? <a href="{{ url_for('login', lang=lang) }}">Connexion</a>
+                {% else %}
+                    لديك حساب بالفعل؟ <a href="{{ url_for('login', lang=lang) }}">تسجيل الدخول</a>
+                {% endif %}
+            </p>
+        </form>
+    </div>
+</body>
+</html>
