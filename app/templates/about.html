@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ 'en' if lang == 0 else 'fr' if lang == 1 else 'ar' }}" {% if lang==2 %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ "About - PlotTwist" if lang == 0 else "À propos - PlotTwist" if lang == 1 else "حول - PlotTwist"}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="about-container">
+        <section class="about-section project">
+            <h2 class="section-title">
+                {% if lang == 0 %}
+                    About Plot Twist
+                {% elif lang == 1 %}
+                    À propos de Plot Twist
+                {% else %}
+                    حول بلوت تويست
+                {% endif %}
+            </h2>
+            <div class="content">
+                {% if lang == 0 %}
+                    <p>Plot Twist is an educational platform designed to make learning Mathematics and Physics engaging and accessible. Based on the Moroccan education system, this platform transforms complex concepts into interactive visualizations and simulations.</p>
+                    <p>This website was developed for Hack Club's "Neighborhood" event. Hack Club is a 501(c)(3) nonprofit organization whose mission is to foster a wholesome generation of coders, makers, founders, and builders. Hack Club is a network of hundreds of student-led computer science clubs and a safe, positive online community of over 50,000 high school makers from around the world. Hack Club programs are free and accessible to all students. They support teenagers in making real projects in the real world. Hack Club is supported by notable figures in the tech industry, including GitHub founder Tom Preston-Werner, Dell Founder Michael Dell and executives at Apple, Facebook, Microsoft, and GitHub, as well as many up-and-coming tech startups.</p>
+                    <p>Features:</p>
+                    <ul>
+                        <li>Interactive 2D/3D visualizations</li>
+                        <li>Step-by-step problem solving</li>
+                        <li>Real-world applications</li>
+                        <li>Practice exercises with solutions</li>
+                    </ul>
+                {% elif lang == 1 %}
+                    <p>Plot Twist est une plateforme éducative conçue pour rendre l'apprentissage des mathématiques et de la physique captivant et accessible. Basée sur le système éducatif marocain, cette plateforme transforme des concepts complexes en visualisations et simulations interactives.</p>
+                    <p>Ce site web a été développé pour l'événement "Neighborhood" de Hack Club. Hack Club est une organisation à but non lucratif 501(c)(3) dont la mission est de favoriser une génération saine de codeurs, créateurs, fondateurs et bâtisseurs. Hack Club est un réseau de centaines de clubs d'informatique dirigés par des étudiants et une communauté en ligne sûre et positive de plus de 50 000 lycéens du monde entier. Les programmes Hack Club sont gratuits et accessibles à tous les étudiants. Ils soutiennent les adolescents dans la réalisation de projets réels dans le monde réel. Hack Club est soutenu par des figures notables de l'industrie technologique, notamment le fondateur de GitHub Tom Preston-Werner, le fondateur de Dell Michael Dell et des dirigeants d'Apple, Facebook, Microsoft et GitHub, ainsi que de nombreuses startups technologiques émergentes.</p>
+                    <p>Caractéristiques:</p>
+                    <ul>
+                        <li>Visualisations 2D/3D interactives</li>
+                        <li>Résolution de problèmes pas à pas</li>
+                        <li>Applications dans le monde réel</li>
+                        <li>Exercices pratiques avec solutions</li>
+                    </ul>
+                {% else %}
+                    <p>بلوت تويست هي منصة تعليمية مصممة لجعل تعلم الرياضيات والفيزياء ممتعاً وسهل المنال. استناداً إلى النظام التعليمي المغربي، تحول هذه المنصة المفاهيم المعقدة إلى تصورات ومحاكاة تفاعلية.</p>
+                    <p>تم تطوير هذا الموقع لحدث "Neighborhood" التابع لـ Hack Club. Hack Club هي منظمة غير ربحية 501(c)(3) مهمتها تعزيز جيل صحي من المبرمجين والصناع والمؤسسين والبناة. Hack Club هي شبكة من مئات نوادي علوم الكمبيوتر التي يقودها الطلاب ومجتمع إيجابي وآمن عبر الإنترنت يضم أكثر من 50,000 صانع من طلاب المدارس الثانوية من جميع أنحاء العالم. برامج Hack Club مجانية ومتاحة لجميع الطلاب. يدعمون المراهقين في تنفيذ مشاريع حقيقية في العالم الحقيقي. يحظى Hack Club بدعم شخصيات بارزة في صناعة التكنولوجيا، بما في ذلك مؤسس GitHub توم بريستون-ويرنر، ومؤسس Dell مايكل ديل والمديرين التنفيذيين في Apple وFacebook وMicrosoft وGitHub، بالإضافة إلى العديد من الشركات الناشئة التكنولوجية الواعدة.</p>
+                    <p>الميزات:</p>
+                    <ul>
+                        <li>تصورات ثنائية وثلاثية الأبعاد تفاعلية</li>
+                        <li>حل المشكلات خطوة بخطوة</li>
+                        <li>تطبيقات في العالم الحقيقي</li>
+                        <li>تمارين عملية مع الحلول</li>
+                    </ul>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="about-section personal">
+            <h2 class="section-title">
+                {% if lang == 0 %}
+                    About Me
+                {% elif lang == 1 %}
+                    À propos de moi
+                {% else %}
+                    من أنا
+                {% endif %}
+            </h2>
+            <div class="content">
+                <div class="profile-info">
+                    <img src="{{ url_for('static', filename='assets/WhatsApp Image 2025-05-12 at 10.46.01 PM.jpeg') }}" alt="Developer Profile" class="profile-image">
+                    <div class="bio">
+                        {% if lang == 0 %}
+                            <p>Hi! I'm Reda Majlal, a High Schooler and Computer Science enthusiast. Having gone through the Moroccan education system myself, I understand the challenges students face in these subjects.</p>
+                            <p>This platform is my contribution to making mathematics and physics more approachable and enjoyable for students. I believe in learning through visualization and practical applications.</p>
+                        {% elif lang == 1 %}
+                            <p>Bonjour! Je suis Reda Majlal, un lycéen passionné d'informatique. Ayant moi-même suivi le système éducatif marocain, je comprends les défis auxquels les étudiants sont confrontés dans ces matières.</p>
+                            <p>Cette plateforme est ma contribution pour rendre les mathématiques et la physique plus accessibles et agréables pour les étudiants. Je crois en l'apprentissage par la visualisation et les applications pratiques.</p>
+                        {% else %}
+                            <p>مرحباً! أنا رضا مجلال، طالب في المدرسة الثانوية ومهتم بعلوم الكمبيوتر. بعد أن مررت بنفسي بالنظام التعليمي المغربي، أفهم التحديات التي يواجهها الطلاب في هذه المواد.</p>
+                            <p>هذه المنصة هي مساهمتي في جعل الرياضيات والفيزياء أكثر سهولة ومتعة للطلاب. أؤمن بالتعلم من خلال التصور والتطبيقات العملية.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

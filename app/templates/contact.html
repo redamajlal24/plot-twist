@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{{ 'en' if lang == 0 else 'fr' if lang == 1 else 'ar' }}" {% if lang==2 %}dir="rtl"{% endif %}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ "Contact us - PlotTwist" if lang == 0 else "Contactez-nous - PlotTwist" if lang == 1 else "اتصل بنا - PlotTwist"}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <form class="contact-form" method="POST" action="{{ url_for('contact') }}">
+            <h2 class="form-title">
+                {% if lang == 0 %}Contact Us
+                {% elif lang == 1 %}Contactez-nous
+                {% else %}تواصل معنا{% endif %}
+            </h2>
+            
+            <div class="form-group">
+                <input type="text" name="name" required 
+                    placeholder="{{ 'Your Name' if lang == 0 else 'Votre Nom' if lang == 1 else 'اسمك' }}">
+            </div>
+            
+            <div class="form-group">
+                <input type="email" name="email" required 
+                    placeholder="{{ 'Your Email' if lang == 0 else 'Votre E-mail' if lang == 1 else 'بريدك الإلكتروني' }}">
+            </div>
+            
+            <div class="form-group">
+                <select name="subject" required>
+                    <option value="" disabled selected>
+                        {{ 'Select Subject' if lang == 0 else 'Sélectionnez le Sujet' if lang == 1 else 'اختر الموضوع' }}
+                    </option>
+                    <option value="general">
+                        {{ 'General Inquiry' if lang == 0 else 'Demande Générale' if lang == 1 else 'استفسار عام' }}
+                    </option>
+                    <option value="bug">
+                        {{ 'Report a Bug' if lang == 0 else 'Signaler un Bug' if lang == 1 else 'الإبلاغ عن خطأ' }}
+                    </option>
+                    <option value="feedback">
+                        {{ 'Feedback' if lang == 0 else 'Retour d\'Information' if lang == 1 else 'تعليقات' }}
+                    </option>
+                    <option value="other">
+                        {{ 'Other' if lang == 0 else 'Autre' if lang == 1 else 'آخر' }}
+                    </option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <textarea name="message" required rows="5"
+                    placeholder="{{ 'Your Message' if lang == 0 else 'Votre Message' if lang == 1 else 'رسالتك' }}"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+                {% if lang == 0 %}Send Message
+                {% elif lang == 1 %}Envoyer le Message
+                {% else %}إرسال الرسالة{% endif %}
+            </button>
+
+            <div class="social-links">
+                <h3>
+                    {% if lang == 0 %}Or find me on:
+                    {% elif lang == 1 %}Ou retrouvez-moi sur:
+                    {% else %}أو تواصل معي عبر:{% endif %}
+                </h3>
+                <div class="social-icons">
+                    <a href="https://github.com/redamajlal24" target="_blank" class="social-icon">GitHub</a>
+                    <a href="https://www.linkedin.com/in/reda-majlal" target="_blank" class="social-icon">LinkedIn</a>
+                    <a href="mailto:redamajlal2@gmail.com" class="social-icon">Email</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

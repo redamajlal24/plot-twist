@@ -1,4 +1,4 @@
-<header {% if lang==1 %}dir="rtl" {% endif %}>
+<header {% if lang==2 %}dir="rtl" {% endif %}>
     <nav class="navbar">
         <div class="left-side">
             <div class="lang-selector">
@@ -50,5 +50,16 @@
             document.querySelector('.burger-menu').style.transform =
                 document.querySelector('.burger-menu').style.transform ? '' : 'rotate(90deg)';
         }
+
+        const navbar = document.querySelector('.navbar');
+        navbar.classList.add('navbar-transparent');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.remove('navbar-transparent');
+            } else {
+                navbar.classList.add('navbar-transparent');
+            }
+        });
     </script>
 </header>

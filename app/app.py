@@ -37,8 +37,17 @@ def about():
     lang = request.args.get('lang', default=0, type=int)
     return render_template('about.html', lang=lang)
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        message = request.form.get('message')
+
+        flash('Message sent successfully!')
+        return redirect(url_for('contact'))
+    
     lang = request.args.get('lang', default=0, type=int)
     return render_template('contact.html', lang=lang)
 

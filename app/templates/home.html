@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ 'en' if lang == 0 else 'fr' if lang == 1 else 'ar' }}">
+<html lang="{{ 'en' if lang == 0 else 'fr' if lang == 1 else 'ar' }}" {% if lang==2 %}dir="rtl"{% endif %}>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,14 +62,13 @@
                 top: ${verticalPos}%;
                 --text-opacity: ${opacity};
                 animation: flyInText ${duration}s linear;
-                direction: ${currentLang >= 1 ? 'rtl' : 'ltr'};  // RTL for both French and Arabic
+                direction: ${currentLang === 2 ? 'rtl' : 'ltr'};
             `;
             
             container.appendChild(element);
             element.addEventListener('animationend', () => element.remove());
             
-            // More frequent text generation: 500-1500ms instead of 1000-3000ms
-            setTimeout(createFlyingText, Math.random() * 1000 + 500);
+            setTimeout(createFlyingText, Math.random() * 2000 + 1000);
         }
 
         // Start multiple flying texts initially

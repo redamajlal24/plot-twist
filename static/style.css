@@ -28,9 +28,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(98, 111, 71, 0.5);
+  background: var(--color-sage);
   border-bottom: 2px solid var(--color-olive);
   z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-transparent {
+  background: rgba(98, 111, 71, 0.5);
 }
 
 .center-logo {
@@ -114,7 +119,7 @@ body {
   width: 300px;
   height: 100vh;
   background: var(--color-cream);
-  padding: 4rem 2rem;
+  padding: 6rem 2rem;
   transition: right 0.3s ease;
   z-index: 999;
   border-left: 2px solid var(--color-olive);
@@ -351,4 +356,206 @@ body {
 .signup-link a:hover {
   color: var(--color-sage);
   text-decoration: underline;
+}
+
+.about-container {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.about-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 2rem;
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--color-cream);
+  transform: rotate(-1deg);
+}
+
+.section-title {
+  color: var(--color-cream);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 0px var(--color-peach);
+  transform: rotate(-2deg);
+}
+
+.content {
+  color: var(--color-cream);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.content p {
+  margin-bottom: 1rem;
+}
+
+.content ul {
+  list-style-type: none;
+  margin: 1rem 0;
+}
+
+.content li {
+  margin: 0.5rem 0;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.content li:before {
+  content: "•";
+  color: var(--color-peach);
+  position: absolute;
+  left: 0;
+}
+
+.profile-info {
+  display: flex;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid var(--color-peach);
+  transform: rotate(3deg);
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: rotate(-3deg);
+}
+
+.bio {
+  flex: 1;
+}
+
+[dir="rtl"] .content li {
+  padding-left: 0;
+  padding-right: 1.5rem;
+}
+
+[dir="rtl"] .content li:before {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .flying-text {
+  direction: rtl;
+}
+
+.contact-form {
+  margin-top: 6rem;
+  background: var(--color-cream);
+  padding: 2.5rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  transform: rotate(-1deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 3px solid var(--color-peach);
+}
+
+.contact-form select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid var(--color-olive);
+  background: transparent;
+  font-family: "DynaPuff", system-ui;
+  font-size: 1rem;
+  color: var(--color-sage);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact-form select:focus {
+  outline: none;
+  border-color: var(--color-peach);
+}
+
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid var(--color-olive);
+  background: transparent;
+  font-family: "DynaPuff", system-ui;
+  font-size: 1rem;
+  color: var(--color-sage);
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-peach);
+  transform: rotate(-1deg);
+}
+
+.social-links {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.social-links h3 {
+  color: var(--color-sage);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  padding: 0.5rem 1rem;
+  background: var(--color-olive);
+  color: var(--color-cream);
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  transform: rotate(-1deg);
+}
+
+.social-icon:hover {
+  background: var(--color-sage);
+  transform: rotate(1deg) translateY(-2px);
+}
+
+[dir="rtl"] .social-icon {
+  transform: rotate(1deg);
+}
+
+[dir="rtl"] .social-icon:hover {
+  transform: rotate(-1deg) translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-image {
+    margin-bottom:1rem
+  }
+
+  .about-section {
+    margin: 1rem;
+    transform: none;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
 }
