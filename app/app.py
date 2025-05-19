@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
 import sys
@@ -16,6 +17,16 @@ app = Flask(__name__,
 
 env = os.getenv('FLASK_ENV', 'development')
 app.config.from_object(config[env])
+
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS= True,
+    MAIL_USERNAME = os.getenv('EMAIL_USER'),
+    MAIL_PASSWORD = os.getenv('EMAIL_PASSWORD'),
+)
+
+mail = Mail(app)
 
 db = SQLAlchemy(app)
 login_manager = LoginManager()
@@ -45,7 +56,26 @@ def contact():
         subject = request.form.get('subject')
         message = request.form.get('message')
 
-        flash('Message sent successfully!')
+        msg = Message(
+            f'New Contact Form Submission: {subject}',
+            sender=email,
+            recipients=['redamajlal2@gmail.com']
+        )
+        msg.body = f"""
+        Name: {name}
+        Email: {email}
+        Subject: {subject}
+
+        Message: {message}
+        """
+
+        try:
+            mail.send(msg)
+            flash('Message sent successfully!')
+        except Exception as e:
+            flash('Failed to send message. Please try again later.')
+            print(f"Error sending email: {e}")    
+
         return redirect(url_for('contact'))
     
     lang = request.args.get('lang', default=0, type=int)
